@@ -1,0 +1,9 @@
+@import 'variables';
+
+:host {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: $gutter-size;
+    text-transform: uppercase;
+}

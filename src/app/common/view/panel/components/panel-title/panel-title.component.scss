@@ -1,0 +1,13 @@
+@import 'variables';
+
+:host {
+    display: block;
+    height: $panel-title-size;
+    padding: 0 $gutter-size;
+    background-color: $primary-color;
+    color: $primary-text-color;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    font-weight: $font-weight-medium;
+}

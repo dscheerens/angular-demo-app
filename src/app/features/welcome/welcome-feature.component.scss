@@ -1,0 +1,31 @@
+@import 'mixins';
+@import 'variables';
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.welcome-panel {
+    width: 500px;
+
+    @include max-elevation();
+}
+
+app-panel-content {
+    display: flex;
+    align-items: center;
+
+    mat-icon.illustration {
+        $size: 128px;
+        width: $size;
+        height: $size;
+        font-size: $size;
+        color: $secondary-text-color;
+    }
+
+    > *:not(:first-child) {
+        margin-left: $gutter-size;
+    }
+}

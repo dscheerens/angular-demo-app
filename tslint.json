@@ -1,0 +1,6 @@
+{
+    "extends": "@dscheerens/tslint-presets/tslint.recommended.angular.json",
+    "rules": {
+        "no-implicit-dependencies": [true, ["@ngneat/spectator"]]
+    }
+}

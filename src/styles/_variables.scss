@@ -1,0 +1,23 @@
+@import './app-theme';
+
+// Material theme colors.
+$app-background-color: mat-color(map-get($app-theme, background), background);
+$primary-color: mat-color(map-get($app-theme, primary));
+$primary-text-color: mat-color(map-get($app-theme, primary), default-contrast);
+$secondary-text-color: mat-color(map-get($app-theme, foreground), secondary-text);
+$panel-background-color: mat-color(map-get($app-theme, background), dialog);
+$negative-color: mat-color(map-get($app-theme, warn), text);
+
+// Custom colors.
+$positive-color: #0a0;
+
+// Default sizes.
+$gutter-size: 1rem;
+$panel-title-size: 40px;
+
+// Font sizes.
+$font-size-small: 12px;
+$font-size-normal: 14px;
+
+// Font weights.
+$font-weight-medium: 500;

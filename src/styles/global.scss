@@ -1,0 +1,16 @@
+@import './app-theme';
+@import './variables';
+
+@include mat-core();
+@include angular-material-theme($app-theme);
+@import './overrides';
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: $app-background-color;
+}

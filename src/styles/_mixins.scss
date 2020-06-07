@@ -1,0 +1,5 @@
+@import './app-theme';
+
+@mixin max-elevation() {
+    @include _mat-theme-elevation(24, $app-theme);
+}

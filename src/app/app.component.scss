@@ -1,0 +1,20 @@
+@import 'variables';
+
+:host {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    ::ng-deep > *:last-child {
+        flex: 1;
+    }
+}
+
+.application-header {
+    background-color: $primary-color;
+    color: $primary-text-color;
+    padding: $gutter-size;
+    text-transform: uppercase;
+    font-weight: $font-weight-medium;
+}

@@ -1,0 +1,47 @@
+@import 'mixins';
+@import 'variables';
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.signup-panel {
+    width: 450px;
+
+    @include max-elevation();
+}
+
+app-panel-content {
+     > *:not(:last-child) {
+        margin-bottom: 0.5 * $gutter-size;
+     }
+
+     mat-form-field {
+        width: 100%;
+    }
+
+     .password-requirements {
+         margin-bottom: $gutter-size;
+    }
+}
+
+app-password-requirement {
+    margin-left: 0.5 * $gutter-size;
+}
+
+.status-message {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    text-transform: none;
+
+    &.error {
+        color: $negative-color;
+    }
+
+    > *:not(:first-child) {
+        margin-left: 0.5 * $gutter-size;
+    }
+}

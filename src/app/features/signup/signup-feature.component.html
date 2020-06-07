@@ -1,0 +1,95 @@
+<form [formGroup]="formGroup" (ngSubmit)="signup()">
+    <app-panel class="signup-panel">
+        <app-panel-title>Sign up</app-panel-title>
+
+        <app-panel-content>
+            <mat-form-field appearance="fill">
+                <mat-label>First name</mat-label>
+                <input matInput type="text" name="firstName" maxlength="200" [formControl]="formControls.firstName">
+                <mat-error *ngIf="formControls.firstName.invalid">
+                    <app-validation-error-message [control]="formControls.firstName" [messages]="{
+                        required: 'Please enter a first name'
+                    }"></app-validation-error-message>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Last name</mat-label>
+                <input matInput type="text" name="lastName" maxlength="200" [formControl]="formControls.lastName">
+                <mat-error *ngIf="formControls.lastName.invalid">
+                    <app-validation-error-message [control]="formControls.lastName" [messages]="{
+                        required: 'Please enter a last name'
+                    }"></app-validation-error-message>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" name="email" maxlength="254" [formControl]="formControls.email">
+                <mat-error *ngIf="formControls.email.invalid">
+                    <app-validation-error-message [control]="formControls.email" [messages]="{
+                        required: 'Please enter an email address',
+                        email: 'Email address is not valid'
+                    }"></app-validation-error-message>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" name="password" maxlength="100" [formControl]="formControls.password">
+                <mat-error *ngIf="formControls.password.invalid">
+                    <app-validation-error-message [control]="formControls.password" [messages]="{
+                        required: 'Please enter a password',
+                        password: 'Password does not meet requirements'
+                    }"></app-validation-error-message>
+                </mat-error>
+            </mat-form-field>
+
+            <div class="password-requirements">
+                <div>Password requirements:</div>
+
+                <app-password-requirement
+                    [satisfied]="!formControls.password.errors?.password?.minLength"
+                >
+                    At least 8 characters
+                </app-password-requirement>
+
+                <app-password-requirement
+                    [satisfied]="!formControls.password.errors?.password?.missingRequiredCharacterGroup"
+                >
+                    Contains lower and upper case characters
+                </app-password-requirement>
+
+                <app-password-requirement
+                    [satisfied]="!formControls.password.errors?.password?.hasDisallowedTerms"
+                >
+                    Does not contain first and last name
+                </app-password-requirement>
+            </div>
+
+            <mat-form-field appearance="fill" class="no-bottom-margin">
+                <mat-label>Confirm password</mat-label>
+                <input matInput type="password" name="passwordConfirm" maxlength="100" [formControl]="formControls.passwordConfirm">
+                <mat-error *ngIf="formControls.passwordConfirm.invalid">
+                    <app-validation-error-message [control]="formControls.passwordConfirm" [messages]="{
+                        doesNotMatchPassword: 'Passwords do not match'
+                    }"></app-validation-error-message>
+                </mat-error>
+            </mat-form-field>
+        </app-panel-content>
+
+        <app-panel-actions>
+            <div class="status-message progress" *ngIf="(createUser$ | async)?.loading">
+                <mat-spinner [diameter]="20"></mat-spinner>
+                <span>Creating account...</span>
+            </div>
+
+            <div class="status-message error" *ngIf="(createUser$ | async)?.failed">
+                <mat-icon>error_outline</mat-icon>
+                <span>Failed to create account. Click submit to retry.</span>
+            </div>
+
+            <button mat-flat-button type="submit" color="primary" [disabled]="(formEnabled$ | async) !== true">Submit</button>
+        </app-panel-actions>
+    </app-panel>
+</form>

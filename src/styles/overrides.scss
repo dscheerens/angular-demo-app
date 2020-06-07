@@ -1,0 +1,9 @@
+// Angular Material overrides.
+
+.mat-button-wrapper {
+    text-transform: uppercase;
+}
+
+mat-form-field.no-bottom-margin {
+    margin-bottom: -1.34375em;
+}
