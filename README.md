@@ -9,7 +9,7 @@ This is just a simple Angular demo application.
 3. Open a terminal and navigate to the directory in which you downloaded / cloned the repository.
 4. Run `npm install` to download the NPM dependencies required to run the application.
 5. Run `npm start` to run the application.
-   It will take a short time to compile the applicationThis will take a while.
+   It will take a short time to compile the application.
    Once finished you can access the application by opening a browser and navigating to [http://localhost:4200](http://localhost:4200).
 
 ### Unit tests & linting
