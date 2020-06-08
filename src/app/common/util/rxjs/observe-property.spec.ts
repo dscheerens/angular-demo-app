@@ -47,7 +47,30 @@ describe('observeProperty function', () => {
         }
     });
 
-    it('can observe an property that is defined through get and set accessor functions', () => {
+    it('will not emit when the same value is reassigned to the observed property', () => {
+        const object = { value: 'same' };
+
+        const { events, close } = materializeStream(observeProperty(object, 'value'));
+
+        try {
+            expect(object.value).toBe('same');
+            expect(events.length).toBe(1);
+            expect(events[0].kind).toBe('N');
+            expect(events[0].value).toBe('same');
+
+            object.value = 'same';
+            expect(object.value).toBe('same');
+            expect(events.length).toBe(1);
+
+            object.value = 'same';
+            expect(object.value).toBe('same');
+            expect(events.length).toBe(1);
+        } finally {
+            close();
+        }
+    });
+
+    it('can observe a property that is defined through get and set accessor functions', () => {
         let objectValue = 'X';
 
         const object = {
@@ -160,29 +183,6 @@ describe('observeProperty function', () => {
             expect(events.length).toBe(2);
             expect(events[1].kind).toBe('N');
             expect(events[1].value).toBe('pie!');
-        } finally {
-            close();
-        }
-    });
-
-    it('will not emit when the same value is reassigned to the observed property', () => {
-        const object = { value: 'same' };
-
-        const { events, close } = materializeStream(observeProperty(object, 'value'));
-
-        try {
-            expect(object.value).toBe('same');
-            expect(events.length).toBe(1);
-            expect(events[0].kind).toBe('N');
-            expect(events[0].value).toBe('same');
-
-            object.value = 'same';
-            expect(object.value).toBe('same');
-            expect(events.length).toBe(1);
-
-            object.value = 'same';
-            expect(object.value).toBe('same');
-            expect(events.length).toBe(1);
         } finally {
             close();
         }

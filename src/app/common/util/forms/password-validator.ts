@@ -12,7 +12,7 @@ export function createPasswordValidator(options: PasswordValidatorOptions): Vali
     return (passwordControl) => {
         const password = passwordControl.value;
         const normalizedPassword = password.toLowerCase();
-        const passwordCharacters = password.split('');
+        const passwordCharacters = Array.from(password);
 
         const minLength = !!options.minLength && password.length < options.minLength;
 
